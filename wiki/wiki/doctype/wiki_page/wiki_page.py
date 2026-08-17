@@ -169,6 +169,7 @@ class WikiPage(WebsiteGenerator):
 		context.dark_mode_logo = wiki_settings.dark_mode_logo
 		context.script = wiki_settings.javascript
 		context.wiki_search_scope = self.get_space_route()
+		context.can_edit = has_edit_permission()
 		context.metatags = {
 			"title": self.title,
 			"description": self.meta_description,
@@ -177,8 +178,12 @@ class WikiPage(WebsiteGenerator):
 			"og:image:width": "1200",
 			"og:image:height": "630",
 		}
-		context.edit_wiki_page = frappe.form_dict.get("editWiki")
-		context.new_wiki_page = frappe.form_dict.get("newWiki")
+		context.edit_wiki_page = (
+			frappe.form_dict.get("editWiki") if context.can_edit else None
+		)
+		context.new_wiki_page = (
+			frappe.form_dict.get("newWiki") if context.can_edit else None
+		)
 		context.last_revision = self.get_last_revision()
 		context.number_of_revisions = frappe.db.count(
 			"Wiki Page Revision Item", {"wiki_page": self.name}
@@ -233,16 +238,19 @@ class WikiPage(WebsiteGenerator):
 
 	def get_items(self, sidebar_items):
 		topmost = frappe.get_value("Wiki Group Item", {"wiki_page": self.name}, ["parent"])
+		can_edit = has_edit_permission()
+		cache_key = f"{topmost}:{int(can_edit)}"
 
-		sidebar_html = frappe.cache().hget("wiki_sidebar", topmost)
+		sidebar_html = frappe.cache().hget("wiki_sidebar", cache_key)
 		if not sidebar_html or frappe.conf.disable_website_cache or frappe.conf.developer_mode:
 			context = frappe._dict({})
 			context.sidebar_items = sidebar_items
 			context.wiki_search_scope = self.get_space_route()
+			context.can_edit = can_edit
 			sidebar_html = frappe.render_template(
 				"wiki/wiki/doctype/wiki_page/templates/web_sidebar.html", context
 			)
-			frappe.cache().hset("wiki_sidebar", topmost, sidebar_html)
+			frappe.cache().hset("wiki_sidebar", cache_key, sidebar_html)
 
 		return sidebar_html
 
@@ -338,6 +346,7 @@ def get_open_drafts():
 
 @frappe.whitelist()
 def preview(content, name, new, type, diff_css=False):
+	_check_editing_allowed()
 	html = frappe.utils.md_to_html(content)
 	if new:
 		return {"html": html}
@@ -403,6 +412,7 @@ def update(
 	new_sidebar_group="",
 ):
 
+	_check_editing_allowed()
 	context = {"route": name}
 	context = frappe._dict(context)
 	content, file_ids = extract_images_from_html(content)
@@ -527,4 +537,18 @@ def delete_wiki_page(wiki_page_route):
 
 @frappe.whitelist(allow_guest=True)
 def has_edit_permission():
-	return frappe.has_permission(doctype="Wiki Page", ptype="write", throw=False)
+    if not frappe.get_meta("Wiki Settings").has_field("allow_editing"):
+        return frappe.has_permission(doctype="Wiki Page", ptype="write", throw=False)
+    if not frappe.db.get_single_value("Wiki Settings", "allow_editing"):
+        return False
+    return frappe.has_permission(doctype="Wiki Page", ptype="write", throw=False)
+
+
+def _check_editing_allowed():
+	if not frappe.get_meta("Wiki Settings").has_field("allow_editing"):
+		return
+	if not frappe.db.get_single_value("Wiki Settings", "allow_editing"):
+		frappe.throw(
+			_("Editing is not allowed"),
+			frappe.PermissionError,
+		)

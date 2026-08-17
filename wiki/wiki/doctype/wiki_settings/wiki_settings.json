@@ -82,6 +82,13 @@
    "label": "Default Wiki Space"
   },
   {
+   "default": "1",
+   "description": "When enabled, users with write permission can edit wiki pages and the sidebar.<br>When disabled, the <b>Edit</b> button and <b>Edit Sidebar</b> are hidden and saving is blocked.",
+   "fieldname": "allow_editing",
+   "fieldtype": "Check",
+   "label": "Allow Editing"
+  },
+  {
    "fieldname": "theme_section",
    "fieldtype": "Section Break",
    "label": "Theme"
