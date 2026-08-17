@@ -1,67 +1,155 @@
-<br>
-<br>
-
 <div align="center">
-<img width="150" alt="logotype" src="https://user-images.githubusercontent.com/28212972/128001084-508e446f-2814-4e1f-a5cb-09598f5a5bdc.png">
+<h1>📚 Wiki — Frappe Wiki App (eng-aymsif Fork)</h1>
+<p>
+<strong>Wiki App built on the <a href="https://frappeframework.com">Frappe Framework</a></strong><br>
+تطبيق ويكيا مبنياً على إطار عمل فرابي
+</p>
 </div>
-
-<br>
 
 ---
 
-<div align="center">
- Wiki App built on the <a href= "https://frappeframework.com" >Frappe Framework</a> | <a href = "https://wiki-docs.frappe.cloud/use_on_frappe_cloud">Try on Frappe Cloud</a>
- 
- \
- [![Wiki](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/w2jgcb/master&style=flat&logo=cypress)](https://cloud.cypress.io/projects/w2jgcb/runs)
- [![CI](https://github.com/frappe/wiki/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/frappe/wiki/actions/workflows/ci.yml)
-</div>
+**English** | [**العربية**](#تحليل-المشروع-بالعربية)
 
-## Introduction
+> This repository is a fork of the official [frappe/wiki](https://github.com/frappe/wiki) app
+> with the following fork-specific enhancements:
+> - **🌐 Full Arabic (RTL) support** — all UI strings are translatable, an Arabic
+>   translation file (`ar.csv`) is bundled, and pages render with the correct
+>   `lang` / `dir` attributes.
+> - **🔒 `Allow Editing` toggle** — a new Wiki Setting that globally gates edit
+>   permissions (hides edit controls, blocks save/preview endpoints, and keys
+>   the sidebar cache by permission state).
+>
+> هذا الريبو هو Fork من تطبيق [frappe/wiki](https://github.com/frappe/wiki) الرسمي
+> مع إضافات خاصة بهذا الـ Fork: دعم عربي كامل (RTL) ومفتاح «السماح بالتحرير».
 
-Frappe Wiki is an Open Source [Wiki](https://en.wikipedia.org/wiki/Wiki) app built on the <a href= "https://frappeframework.com" >Frappe Framework</a>. It is well suited to serve dynamic, text-heavy content like documentation and knowledge base. It allows publishing small changes and even new pages on the fly without downtime. It also maintains revision history and has a change approval mechanism.
+---
 
-## Installation
+## 📋 Project Analysis / تحليل المشروع
+
+### 🎯 Purpose / الغرض
+
+**English:** Wiki is a dynamic, text-heavy knowledge base and documentation app.
+It lets teams publish pages on the fly, maintain full revision history, compare
+changes, and control updates through an approval workflow.
+
+**العربية:** «Wiki» تطبيق قاعدة معرفة ووثائق ديناميكي غني بالنصوص. يتيح للفرق
+نشر الصفحات مباشرة، والاحتفاظ بسجل كامل للمراجعات، ومقارنة التغييرات، والتحكم
+بالتحديثات عبر سير عمل للموافقات.
+
+### 👥 Target Audience / الجمهور المستهدف
+
+**English:** Documentation and knowledge-management teams running Frappe/ERPNext
+sites — product documentation, internal wikis, help centers, and public docs.
+
+**العربية:** فرق التوثيق وإدارة المعرفة التي تشغّل مواقع Frappe/ERPNext —
+توثيق المنتجات، والويكي الداخلية، ومراكز المساعدة، والوثائق العامة.
+
+### 🧩 Modules / الوحدات
+
+| Module / الوحدة | Description / الوصف |
+|---|---|
+| **Wiki Page** | The core content entity with Markdown/rich-text authoring and revision history / الصفحة الأساسية للمحتوى مع سجل مراجعات |
+| **Wiki Group** | Hierarchical grouping of pages in the sidebar / تجميع هرمي للصفحات في الشريط الجانبي |
+| **Wiki Settings** | Global configuration — logo, scripts, spaces, and the new `allow_editing` toggle / الإعدادات العامة |
+| **Revisions** | Change approval, diff comparison, and revision listing / الموافقات على التغييرات ومقارنتها |
+
+### 🗃️ Core DocTypes / الكيانات الأساسية
+
+- `Wiki Page` — content page with route, content, and sidebar placement
+- `Wiki Group` — sidebar group / page hierarchy
+- `Wiki Group Item` — membership of a page in a group
+- `Wiki Page Revision` / `Wiki Page Revision Item` — revision and diff tracking
+- `Wiki Settings` — single-doctype configuration
+
+### 🛠️ Tech Stack / التقنيات
+
+- **Backend:** Python, Frappe Framework
+- **Frontend:** JavaScript, TipTap (rich-text editor), jQuery
+- **Database:** MariaDB
+- **Tooling:** Node.js, Yarn, Bench, Cypress (E2E)
+
+### ✨ Key Features / الميزات الأساسية
+
+1. Create Wiki Pages & author in Markdown or Rich Text
+2. Unlimited sidebar hierarchy (Wiki Groups)
+3. Full revision history with diff comparison & approval workflow
+4. Attachments, Table of Contents, caching
+5. Custom Script support via `Wiki Settings`
+6. *Fork:* `Allow Editing` permission toggle
+7. *Fork:* Arabic (RTL) translations
+
+### 🔗 Integrations / الترابط
+
+- Runs on **Frappe Framework** (integrated with **ERPNext** sites)
+- Serves via **Frappe Website** renderer with custom route rules
+- Manageable from **Frappe Desk** (Wiki Settings)
+
+---
+
+## 📦 Installation / التثبيت
 
 ```bash
 # get app
-$ bench get-app https://github.com/frappe/wiki
+bench get-app https://github.com/eng-aymsif/wiki
 
 # install on site
-$ bench --site sitename install-app wiki
+bench --site sitename install-app wiki
+
+# add Arabic translations (after install)
+bench --site sitename set-config website_language ar
 ```
-Note: Wiki's master branch does not support v13 Frappe / ERPNext
 
-## Features
+> Note: `main` branch does not support Frappe/ERPNext v13.
 
-1. Create Wiki Pages
-2. Author content in Markdown or Rich Text
-3. Set-up Controlled Wiki Updates
-4. Unlimited Sidebar Hierarchy
-5. Add attachments
-6. Table of Contents
-7. Caching
-8. Custom Script Support via `Wiki Settings`
+---
 
-## Screenshots
+## 🧪 Validation / التحقق
 
-### 1. Rendered Page
-<img width="1552" alt="wiki-rendered" src="https://user-images.githubusercontent.com/28212972/127900631-c9b1c699-4a19-4b12-953e-308786d01c17.png">
+```bash
+bench build --app wiki     # frontend assets
+yarn run test              # unit tests (if configured)
+bench --site sitename console  # runtime sanity checks
+```
 
-### 2. Edit Page
-<img width="1552" alt="wiki-new" src="https://user-images.githubusercontent.com/28212972/127900757-9a3c9994-8e4c-42bc-99dd-f710a54315bb.png">
+---
 
-### 3. Review Edited Page
-<img width="1552" alt="wiki-new" src="https://user-images.githubusercontent.com/28212972/127900874-23664b1f-87e7-4e86-b4f3-c7e2c78ca0d7.png">
+## 🔗 Links / روابط
 
-### 4. Revisions
-<img width="1552" alt="wiki-revisions" src="https://user-images.githubusercontent.com/28212972/127901208-8b007e97-e779-4a5c-a097-06954e11a823.png">
+- Repository: <https://github.com/eng-aymsif/wiki>
+- Releases: <https://github.com/eng-aymsif/wiki/releases>
+- Upstream: <https://github.com/frappe/wiki>
 
-### 5. Compare changes
-<img width="1552" alt="wiki-compare" src="https://user-images.githubusercontent.com/28212972/127901119-d7d7c3a8-2abd-453b-9318-67ad5861c72c.png">
+---
 
+## 📄 License / الترخيص
 
+MIT — see [frappe/wiki](https://github.com/frappe/wiki/blob/main/license.txt).
 
-#### License
+---
 
-MIT
+## تحليل المشروع بالعربية
+
+**الغرض:** تطبيق «Wiki» هو تطبيق قاعدة معرفة ووثائق ديناميكي مبنٍ على إطار عمل
+فرابي، مصمم لخدمة المحتوى النصي الكثيف مثل التوثيق وقواعد المعرفة. يسمح بنشر
+صفحات جديدة وتعديلات صغيرة دون توقف، مع سجل مراجعات كامل وآلية موافقات على
+التغييرات.
+
+**الجمهور المستهدف:** فرق التوثيق وإدارة المعرفة على مواقع Frappe/ERPNext
+(توثيق المنتجات، الويكي الداخلية، مراكز المساعدة، الوثائق العامة).
+
+**الوحدات الرئيسية:** Wiki Page (الصفحة ومحتواها)، Wiki Group (التجميع الهرمي)،
+Wiki Settings (الإعدادات العامة)، Revisions (المراجعات والموافقات).
+
+**الكيانات الأساسية (DocTypes):** Wiki Page، Wiki Group، Wiki Group Item،
+Wiki Page Revision، Wiki Page Revision Item، Wiki Settings.
+
+**التقنيات:** بايثون + Frappe Framework (Backend)، جافاسكربت + TipTap
+(Frontend)، MariaDB (قاعدة البيانات)، Node.js/Yarn/Bench (أدوات التطوير).
+
+**الميزات الأساسية:** إنشاء صفحات الويكي، الكتابة بـ Markdown أو نص منسّق،
+تسلسل هرمي غير محدود في الشريط الجانبي، سجل مراجعات مع مقارنة الفروقات،
+المرفقات، جدول المحتويات، التخزين المؤقت، ودعم السكربتات المخصصة.
+
+**إضافات هذا الـ Fork:** مفتاح «السماح بالتحرير» (allow_editing) الذي يقفل
+أزرار التحرير ونقطتي الحفظ والمعاينة عند تعطيله، ودعم ترجمة عربية كاملة مع
+اتجاه RTL.
