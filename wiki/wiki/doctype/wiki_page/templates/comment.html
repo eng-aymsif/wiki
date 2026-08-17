@@ -6,7 +6,7 @@
 		<div class="timeline-item activity-toggle">
 			<div class="timeline-dot"></div>
 			<div class="timeline-content flex align-center">
-				<h4>Activity</h4>
+				<h4>{{ _("Activity") }}</h4>
 			</div>
 		</div>
 		<div class="timeline-items">
@@ -29,7 +29,7 @@
 										{{frappe.db.get_value("User", comment.owner, ["first_name"], as_dict=True).get("first_name")}} -
 									{% endif %}
 									{{ comment.owner }}
-									commented
+									{{ _("commented") }}
 									<span class="text-muted margin-left">
 										<span class="frappe-timestamp "
 											data-timestamp="{{comment.creation}}"

@@ -287,7 +287,7 @@ window.RenderWiki = class RenderWiki extends Wiki {
         const newSidebarItem = $(`
         <li class="sidebar-item active" data-type="Wiki Page" data-name="new-wiki-page" data-group-name="${groupName}">
           <div>
-            <a href="#" class="active">New Wiki Page</a>
+            <a href="#" class="active">${__("New Wiki Page")}</a>
           </div>
         </li>
       `);
@@ -356,10 +356,11 @@ window.RenderWiki = class RenderWiki extends Wiki {
           title: __("Delete Wiki Page"),
           indicator: "red",
           message: __(
-            `Are you sure you want to <b>delete</b> the Wiki Page <b>${title}</b>?`,
+            "Are you sure you want to <b>delete</b> the Wiki Page <b>{0}</b>?",
+            [title],
           ),
           primary_action: {
-            label: "Yes",
+            label: __("Yes"),
             action() {
               frappe.call({
                 method:
@@ -372,7 +373,7 @@ window.RenderWiki = class RenderWiki extends Wiki {
                     sidebar_item.remove();
 
                     frappe.show_alert({
-                      message: `Wiki Page <b>${title}</b> deleted`,
+                      message: __("Wiki Page <b>{0}</b> deleted", [title]),
                       indicator: "green",
                     });
                     dialog.hide();
@@ -444,7 +445,7 @@ window.RenderWiki = class RenderWiki extends Wiki {
       else $(".revision-content")[0].innerHTML = currentRevision.content;
       $(
         ".revision-time",
-      )[0].innerHTML = `${currentRevision.author} edited ${currentRevision.revision_time}`;
+      )[0].innerHTML = __("{0} edited {1}", [currentRevision.author, currentRevision.revision_time]);
       currentRevisionIndex++;
       addHljsClass();
     });
@@ -465,7 +466,7 @@ window.RenderWiki = class RenderWiki extends Wiki {
       );
       $(
         ".revision-time",
-      )[0].innerHTML = `${currentRevision.author} edited ${currentRevision.revision_time}`;
+      )[0].innerHTML = __("{0} edited {1}", [currentRevision.author, currentRevision.revision_time]);
       currentRevisionIndex--;
       addHljsClass();
     });
@@ -599,7 +600,7 @@ window.RenderWiki = class RenderWiki extends Wiki {
             let results = r.message.docs || [];
             let dropdown_html;
             if (results.length === 0) {
-              dropdown_html = `<div style="margin: 1.5rem 9rem;">No results found</div>`;
+              dropdown_html = `<div style="margin: 1.5rem 9rem;">${__("No results found")}</div>`;
             } else {
               dropdown_html = results
                 .map((r) => {

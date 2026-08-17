@@ -32,13 +32,13 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
-			<h5 class="modal-title" id="addGroupModalTitle">Title</h5>
+			<h5 class="modal-title" id="addGroupModalTitle">{{ _("Title") }}</h5>
 		  </div>
 		  <div class="modal-body">
 			<input type="text" id="title" name="title">
 		  </div>
 		<div class="modal-footer">
-		  <button class="add-group-btn btn btn-primary btn-sm" type="button" data-dismiss="modal">Submit</button>
+		  <button class="add-group-btn btn btn-primary btn-sm" type="button" data-dismiss="modal">{{ _("Submit") }}</button>
 		</div>
 	  </div>
 	</div>
@@ -53,11 +53,11 @@
   <div class="wiki-footer hide d-print-none">
 	<div class = "forward-back">
 		<a href="#" class="btn left">
-			<p>Previous Page</p>
+			<p>{{ _("Previous Page") }}</p>
 			<p>Left</p>
 		</a>
 		<a href="#" class="btn pull-right right">
-			<p>Next Page</p>
+			<p>{{ _("Next Page") }}</p>
 			<p>Right</p></a>
 		</a>
 	</div>
@@ -71,6 +71,14 @@
 </script>
 
 {{ include_script('wiki.bundle.js') }}
+
+<script>
+	frappe._messages = Object.assign({}, frappe._messages, {
+{%- for __msg in ["last updated {0}", "now", "{0} m", "{0} h", "{0} d", "{0} w", "{0} M", "{0} y", "just now", "1 minute ago", "{0} minutes ago", "1 hour ago", "{0} hours ago", "yesterday", "{0} days ago", "1 week ago", "{0} weeks ago", "1 month ago", "{0} months ago", "1 year ago", "{0} years ago"] %}
+		{{ __msg | tojson }}: {{ _(__msg) | tojson }},
+{%- endfor %}
+	});
+</script>
 
 <script>
 	function getSidebarItems() {

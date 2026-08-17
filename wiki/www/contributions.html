@@ -34,7 +34,7 @@
 								j.status }}</span></td>
 						<td>{{ j.message }}</td>
 						<td>{{ j.modified }}</td>
-						<td> <a class="btn btn-default btn-xs center" href="{{ j.edit_link }}">Open Contribution</a>
+						<td> <a class="btn btn-default btn-xs center" href="{{ j.edit_link }}">{{ _("Open Contribution") }}</a>
 						</td>
 					</tr>
 					{% endfor %}
@@ -52,7 +52,7 @@
 </div>
 {% if contributions %}
 <br>
-<div> <button class='btn pull-right get_contributions'>More</button></div>
+<div> <button class='btn pull-right get_contributions'>{{ _("More") }}</button></div>
 <br>
 <br>
 
@@ -83,7 +83,7 @@
 							${contribution.status}</span></td>
 						<td>${contribution.message}</td>
 						<td>${contribution.modified}</td>
-						<td> <a class="btn btn-default btn-xs center" href="${contribution.edit_link}">Open Contribution</a>
+						<td> <a class="btn btn-default btn-xs center" href="${contribution.edit_link}">{{ _("Open Contribution") }}</a>
 						</td>
 					</tr>
 				`))

@@ -49,7 +49,7 @@ window.Wiki = class Wiki {
     const lastUpdatedDate = frappe.datetime.prettyDate(
       $(".user-contributions").data("date"),
     );
-    $(".user-contributions").append(`last updated ${lastUpdatedDate}`);
+    $(".user-contributions").append(__("last updated {0}", [lastUpdatedDate]));
   }
 
   set_darkmode_button() {
@@ -111,7 +111,7 @@ window.Wiki = class Wiki {
     $("pre code")
       .parent("pre")
       .prepend(
-        `<button title="Copy Code" class="btn copy-btn" data-toggle="tooltip"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></button>`,
+        `<button title="${__("Copy Code")}" class="btn copy-btn" data-toggle="tooltip"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></button>`,
       );
 
     $(".copy-btn").on("click", function () {

@@ -56,7 +56,7 @@ const saveWikiPage = (draft = false) => {
     method: "wiki.wiki.doctype.wiki_page.wiki_page.update",
     args: {
       name: $('[name="wiki-page-name"]').val(),
-      message: `${isEmptyEditor ? "Created" : "Edited"} ${title}`,
+      message: `${isEmptyEditor ? __("Created") : __("Edited")} ${title}`,
       content,
       new: isEmptyEditor,
       new_sidebar_items: isEmptyEditor ? getSidebarItems() : "",
@@ -81,10 +81,10 @@ const editor = new Editor({
       document: false,
       codeBlock: false,
     }),
-    Placeholder.configure({
+Placeholder.configure({
       placeholder: ({ node }) => {
         if (node.type.name === "heading" && node.attrs.level === 1)
-          return "What’s the Wiki title?";
+          return __("What's the Wiki title?");
       },
     }),
     Link.configure({

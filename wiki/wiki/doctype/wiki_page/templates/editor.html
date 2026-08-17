@@ -1,6 +1,6 @@
 <div>
     <div class="wiki-edit-controls">
-        <div class="dropdown" data-toggle="tooltip" title="Heading">
+        <div class="dropdown" data-toggle="tooltip" title="{{ _("Heading") }}">
             <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" data-placement="top" aria-expanded="false" data-tiptap-button="heading">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
@@ -12,24 +12,24 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="headingDropdownMenuButton">
                 <a href="#" class="dropdown-item" data-tiptap-button="h2">
-                    Heading 2
+                    {{ _("Heading 2") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="h3">
-                    Heading 3
+                    {{ _("Heading 3") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="h4">
-                    Heading 4
+                    {{ _("Heading 4") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="h5">
-                    Heading 5
+                    {{ _("Heading 5") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="h6">
-                    Heading 6
+                    {{ _("Heading 6") }}
                 </a>
             </div>
         </div>
         <div class="vertical-sep"></div>
-        <button data-toggle="tooltip" data-placement="top" title="Bold" data-tiptap-button="bold">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Bold") }}" data-tiptap-button="bold">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -37,14 +37,14 @@
                     fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Italic" data-tiptap-button="italic">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Italic") }}" data-tiptap-button="italic">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M15 20H7v-2h2.927l2.116-12H9V4h8v2h-2.927l-2.116 12H15z" fill="currentColor" />
             </svg>
         </button>
         <div class="vertical-sep"></div>
-        <button data-toggle="tooltip" data-placement="top" title="Bullet List" data-tiptap-button="bulletList">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Bullet List") }}" data-tiptap-button="bulletList">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -52,7 +52,7 @@
                     fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Number List" data-tiptap-button="orderedList">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Number List") }}" data-tiptap-button="orderedList">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -61,26 +61,26 @@
             </svg>
         </button>
         <div class="vertical-sep"></div>
-        <button data-toggle="tooltip" data-placement="top" title="Align Left" data-tiptap-button="alignLeft">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Align Left") }}" data-tiptap-button="alignLeft">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M3 4h18v2H3V4zm0 15h14v2H3v-2zm0-5h18v2H3v-2zm0-5h14v2H3V9z" fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Align Center" data-tiptap-button="alignCenter">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Align Center") }}" data-tiptap-button="alignCenter">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M3 4h18v2H3V4zm2 15h14v2H5v-2zm-2-5h18v2H3v-2zm2-5h14v2H5V9z" fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Align Right" data-tiptap-button="alignRight">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Align Right") }}" data-tiptap-button="alignRight">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M3 4h18v2H3V4zm4 15h14v2H7v-2zm-4-5h18v2H3v-2zm4-5h14v2H7V9z" fill="currentColor" />
             </svg>
         </button>
         <div class="vertical-sep"></div>
-        <button data-toggle="tooltip" data-placement="top" title="Image" data-tiptap-button="image">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Image") }}" data-tiptap-button="image">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -88,7 +88,7 @@
                     fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Link" data-tiptap-button="link">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Link") }}" data-tiptap-button="link">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -101,19 +101,18 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="linkModalTitle">Set Link</h5>
+                        <h5 class="modal-title" id="linkModalTitle">{{ _("Set Link") }}</h5>
                     </div>
                     <div class="modal-body">
                         <input type="text" id="link" name="link">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" data-modal-button="link" class="btn btn-primary btn-sm" data-dismiss="modal">Add
-                            Link</button>
+                        <button type="button" data-modal-button="link" class="btn btn-primary btn-sm" data-dismiss="modal">{{ _("Add Link") }}</button>
                     </div>
                 </div>
             </div>
         </div>
-        <button data-toggle="tooltip" data-placement="top" title="Blockquote" data-tiptap-button="blockquote">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Blockquote") }}" data-tiptap-button="blockquote">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -121,7 +120,7 @@
                     fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Code" data-tiptap-button="codeBlock">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Code") }}" data-tiptap-button="codeBlock">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path
@@ -129,14 +128,14 @@
                     fill="currentColor" />
             </svg>
         </button>
-        <button data-toggle="tooltip" data-placement="top" title="Horizontal Rule" data-tiptap-button="horizontalRule">
+        <button data-toggle="tooltip" data-placement="top" title="{{ _("Horizontal Rule") }}" data-tiptap-button="horizontalRule">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                 <path fill="none" d="M0 0h24v24H0z" />
                 <path d="M2 11h2v2H2v-2zm4 0h12v2H6v-2zm14 0h2v2h-2v-2z" fill="currentColor" />
             </svg>
 
         </button>
-        <div class="dropdown" data-toggle="tooltip" title="Table">
+        <div class="dropdown" data-toggle="tooltip" title="{{ _("Table") }}">
             <button data-toggle="dropdown" data-placement="top" class="dropdown-toggle" type="button"
                 id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
@@ -148,53 +147,53 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="tableDropdownMenuButton">
                 <a href="#" class="dropdown-item" data-tiptap-button="insertTable">
-                    Insert Table
+                    {{ _("Insert Table") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="addColumnBefore">
-                    Add Column Before
+                    {{ _("Add Column Before") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="addColumnAfter">
-                    Add Column After
+                    {{ _("Add Column After") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="deleteColumn">
-                    Delete Column
+                    {{ _("Delete Column") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="addRowBefore">
-                    Add Row Before
+                    {{ _("Add Row Before") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="addRowAfter">
-                    Add Row After
+                    {{ _("Add Row After") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="deleteRow">
-                    Delete Row
+                    {{ _("Delete Row") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="toggleHeaderColumn">
-                    Toggle Header Column
+                    {{ _("Toggle Header Column") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="toggleHeaderRow">
-                    Toggle Header Row
+                    {{ _("Toggle Header Row") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="toggleHeaderCell">
-                    Toggle Header Cell
+                    {{ _("Toggle Header Cell") }}
                 </a>
                 <a href="#" class="dropdown-item" data-tiptap-button="deleteTable">
-                    Delete Table
+                    {{ _("Delete Table") }}
                 </a>
             </div>
         </div>
     </div>
     <div class="wiki-edit-control-btn hide">
-        <div class="btn btn-secondary discard-edit-btn btn-sm" data-new="false">Discard</div>
+        <div class="btn btn-secondary discard-edit-btn btn-sm" data-new="false">{{ _("Discard") }}</div>
         <div class="btn-group">
-            <div type="button" class="btn btn-primary save-wiki-page-btn btn-sm" data-tiptap-button="saveWikiPage">Save
+            <div type="button" class="btn btn-primary save-wiki-page-btn btn-sm" data-tiptap-button="saveWikiPage">{{ _("Save") }}
             </div>
             <div type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="sr-only">Toggle Dropdown</span>
+                <span class="sr-only">{{ _("Toggle Dropdown") }}</span>
             </div>
             <div class="dropdown-menu" aria-labelledby="saveDropdownMenuButton">
-                <a href="#" class="dropdown-item" data-tiptap-button="saveWikiPage">Save</a>
-                <a href="#" class="dropdown-item" data-tiptap-button="draftWikiPage">Draft</a>
+                <a href="#" class="dropdown-item" data-tiptap-button="saveWikiPage">{{ _("Save") }}</a>
+                <a href="#" class="dropdown-item" data-tiptap-button="draftWikiPage">{{ _("Draft") }}</a>
             </div>
         </div>
     </div>
