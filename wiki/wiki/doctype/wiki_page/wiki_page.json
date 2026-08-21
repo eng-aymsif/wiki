@@ -15,24 +15,36 @@
   "route",
   "published",
   "allow_guest",
-  "section_break_4",
-  "content",
-  "meta_tags_section",
+   "section_break_4",
+   "content",
+   "content_type",
+   "meta_tags_section",
   "meta_description",
   "meta_image",
   "meta_keywords"
  ],
  "fields": [
-  {
-   "allow_in_quick_entry": 1,
-   "default": "No Content",
-   "description": "It is recommended that you start your first heading with h2, as the title will be the h1.",
-   "fieldname": "content",
-   "fieldtype": "HTML Editor",
-   "in_preview": 1,
-   "label": "Content",
-   "reqd": 1
-  },
+   {
+    "allow_in_quick_entry": 1,
+    "default": "No Content",
+    "description": "It is recommended that you start your first heading with h2, as the title will be the h1.",
+    "fieldname": "content",
+    "fieldtype": "HTML Editor",
+    "in_preview": 1,
+    "label": "Content",
+    "reqd": 1
+   },
+   {
+    "default": "Markdown",
+    "description": "Jinja Template: content is rendered server-side via Jinja (like Print Format HTML), enabling translatable strings such as {{ _(\"Ticket Number\") }}. Pages in this mode can only be edited from the Desk, not from the web editor.<br>\nJinja Template: يُصيَّر المحتوى من جهة الخادم عبر Jinja (مثل حقل HTML في Print Format) مما يتيح نصوصاً قابلة للترجمة، ولا يمكن تعديل هذه الصفحات إلا من Desk.",
+    "fieldname": "content_type",
+    "fieldtype": "Select",
+    "in_list_view": 1,
+    "in_preview": 1,
+    "in_standard_filter": 1,
+    "label": "Content Type",
+    "options": "Markdown\nJinja Template"
+   },
   {
    "default": "0",
    "fieldname": "published",

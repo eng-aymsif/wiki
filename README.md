@@ -77,6 +77,31 @@ sites — product documentation, internal wikis, help centers, and public docs.
 5. Custom Script support via `Wiki Settings`
 6. *Fork:* `Allow Editing` permission toggle
 7. *Fork:* Arabic (RTL) translations
+8. *Fork:* `Jinja Template` content type — translatable pages
+
+### 🌐 Jinja Template Content Type / نوع المحتوى «قالب Jinja»
+
+**English:** A Wiki Page can set **Content Type = `Jinja Template`** (Desk only).
+Its content is then rendered server-side through the same sandboxed Jinja
+environment used by Print Format's `html` field, enabling translatable strings:
+
+```html
+<td class="table-primary">{{ _("Ticket Number") }}</td>
+```
+
+- Available context: `doc` (the Wiki Page), plus Frappe safe globals (`frappe.utils.*`, `_()`, …)
+- Translations resolve per-request language; page cache is stored per language automatically
+- These pages are protected from the web editor (Edit button hidden, API updates blocked) — edit them from the Desk where the content field is a code editor (CodeMirror)
+- Template syntax is validated on save (`validate_template`)
+
+**العربية:** يمكن لصفحة الويكي اختيار **نوع المحتوى = `Jinja Template`** (من Desk فقط)،
+فيُصيَّر محتواها من جهة الخادم عبر نفس بيئة Jinja المعزولة المستخدمة في حقل HTML
+بدوكتيب Print Format، مما يتيح نصوصاً قابلة للترجمة مثل المثال أعلاه:
+
+- المتاح داخل القالب: `doc` (صفحة الويكي) ووظائف frappe الآمنة (`frappe.utils.*`, `_()`)
+- تُترجم النصوص حسب لغة الزائر، ويُخزَّن كاش الصفحة لكل لغة على حدة تلقائياً
+- هذه الصفحات محمية من محرر الويب (يُخفى زر التعديل ويُحجب التحديث عبر API) — عدّلها من Desk حيث يكون حقل المحتوى محرر أكواد
+- تُفحص صياغة القالب عند الحفظ
 
 ### 🔗 Integrations / الترابط
 

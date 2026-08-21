@@ -13,6 +13,7 @@
 | Version / الإصدار | Link / الرابط |
 |---|---|
 | [v1.0.0](https://github.com/eng-aymsif/wiki/releases/tag/v1.0.0) | Initial stable release of the fork — Allow Editing toggle + Arabic (RTL) translations / الإصدار المستقر الأولي للـ Fork |
+| [v1.1.0](https://github.com/eng-aymsif/wiki/releases/tag/v1.1.0) | Jinja Template content type — translatable Wiki Page content via `{{ _("...") }}` (Print Format-style rendering) / نوع محتوى قالب Jinja للصفحات القابلة للترجمة |
 
 ## App Structure / بنية التطبيق
 
@@ -46,3 +47,10 @@ wiki/
 - Sync with upstream: `git fetch upstream && git merge upstream/main`
 - Bump version: follow [SemVer](https://semver.org) with annotated tags
 - Validation: `bench build --app wiki` before tagging
+
+## Jinja Template Mode / وضع قالب Jinja
+
+- Wiki Page `content_type` field: `Markdown` (default) | `Jinja Template`
+- Rendering: `get_jenv().from_string(content).render({"doc": self})` — same mechanism as Print Format `html` field (frappe/www/printview.py)
+- Guards: web Edit button hidden (`content_editable`), `update()` API blocked, `update_page()` blocked, syntax validated on save
+- Translations: add strings via Translation doctype or app CSVs; resolved per-request language; page cache is per-language (`cache_html`)

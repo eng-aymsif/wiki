@@ -9,6 +9,7 @@ import frappe
 from frappe import _
 from frappe.core.doctype.file.file import get_random_filename
 from frappe.utils.data import sbool
+from frappe.utils.jinja import get_jenv, validate_template
 from frappe.website.doctype.website_settings.website_settings import modify_header_footer_items
 from frappe.website.website_generator import WebsiteGenerator
 
@@ -16,6 +17,15 @@ from wiki.wiki.doctype.wiki_page.search import remove_index, update_index
 
 
 class WikiPage(WebsiteGenerator):
+	def validate(self):
+		if self.content_type == "Jinja Template":
+			validate_template(self.content)
+
+	def get_rendered_content(self):
+		if self.content_type == "Jinja Template":
+			return get_jenv().from_string(self.content).render({"doc": self})
+		return frappe.utils.md_to_html(self.content)
+
 	def before_save(self):
 
 		details = frappe.db.get_values(
@@ -85,6 +95,12 @@ class WikiPage(WebsiteGenerator):
 		"""
 		Update Wiki Page and create a Wiki Page Revision
 		"""
+		if self.content_type == "Jinja Template":
+			frappe.throw(
+				_("Pages with Content Type 'Jinja Template' can only be edited from the Desk"),
+				frappe.PermissionError,
+			)
+
 		self.title = title
 
 		if content != self.content:
@@ -170,6 +186,7 @@ class WikiPage(WebsiteGenerator):
 		context.script = wiki_settings.javascript
 		context.wiki_search_scope = self.get_space_route()
 		context.can_edit = has_edit_permission()
+		context.content_editable = context.can_edit and self.content_type != "Jinja Template"
 		context.metatags = {
 			"title": self.title,
 			"description": self.meta_description,
@@ -179,16 +196,16 @@ class WikiPage(WebsiteGenerator):
 			"og:image:height": "630",
 		}
 		context.edit_wiki_page = (
-			frappe.form_dict.get("editWiki") if context.can_edit else None
+			frappe.form_dict.get("editWiki") if context.content_editable else None
 		)
 		context.new_wiki_page = (
-			frappe.form_dict.get("newWiki") if context.can_edit else None
+			frappe.form_dict.get("newWiki") if context.content_editable else None
 		)
 		context.last_revision = self.get_last_revision()
 		context.number_of_revisions = frappe.db.count(
 			"Wiki Page Revision Item", {"wiki_page": self.name}
 		)
-		html = frappe.utils.md_to_html(self.content)
+		html = self.get_rendered_content()
 		context.content = html
 		context.page_toc_html = (
 			self.calculate_toc_html(html) if wiki_settings.enable_table_of_contents else None
@@ -347,7 +364,10 @@ def get_open_drafts():
 @frappe.whitelist()
 def preview(content, name, new, type, diff_css=False):
 	_check_editing_allowed()
-	html = frappe.utils.md_to_html(content)
+	if sbool(new) or frappe.db.get_value("Wiki Page", name, "content_type") != "Jinja Template":
+		html = frappe.utils.md_to_html(content)
+	else:
+		html = get_jenv().from_string(content).render({"doc": frappe.get_doc("Wiki Page", name)})
 	if new:
 		return {"html": html}
 	from ghdiff import diff
@@ -412,13 +432,20 @@ def update(
 	new_sidebar_group="",
 ):
 
+	new = sbool(new)
+	draft = sbool(draft)
+
 	_check_editing_allowed()
+
+	if not new and frappe.db.get_value("Wiki Page", name, "content_type") == "Jinja Template":
+		frappe.throw(
+			_("This page uses the 'Jinja Template' content type and can only be edited from the Desk"),
+			frappe.PermissionError,
+		)
+
 	context = {"route": name}
 	context = frappe._dict(context)
 	content, file_ids = extract_images_from_html(content)
-
-	new = sbool(new)
-	draft = sbool(draft)
 
 	status = "Draft" if draft else "Under Review"
 	if wiki_page_patch:
