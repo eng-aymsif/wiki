@@ -1,2 +1,6 @@
-ghdiff
-redisearch>=2.1.0,<3.0.0
+ghdiff==0.4
+pymysql==1.1.1
+redisearch==2.1.1
+# redis (4.5.5) is provided by frappe's own requirements and is intentionally
+# not listed here: redisearch 2.1.1 metadata pins redis==3.5.3, which would
+# make this requirement set unresolvable alongside frappe.
