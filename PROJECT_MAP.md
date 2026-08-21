@@ -13,7 +13,7 @@
 | Version / الإصدار | Link / الرابط |
 |---|---|
 | [v1.0.0](https://github.com/eng-aymsif/wiki/releases/tag/v1.0.0) | Initial stable release of the fork — Allow Editing toggle + Arabic (RTL) translations / الإصدار المستقر الأولي للـ Fork |
-| [v1.1.0](https://github.com/eng-aymsif/wiki/releases/tag/v1.1.0) | Jinja Template content type — translatable Wiki Page content via `{{ _("...") }}` (Print Format-style rendering) / نوع محتوى قالب Jinja للصفحات القابلة للترجمة |
+| [v1.0.1](https://github.com/eng-aymsif/wiki/releases/tag/v1.0.1) | Jinja Template content type — translatable Wiki Page content via `{{ _("...") }}` (Print Format-style rendering) / نوع محتوى قالب Jinja للصفحات القابلة للترجمة |
 
 ## App Structure / بنية التطبيق
 
